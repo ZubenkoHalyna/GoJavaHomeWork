@@ -6,7 +6,7 @@ package module1;
 public class SecondClass {
     public static void main(String args[])
     {
-        // Очень хотелось вывести тут строку "Мой второй класс на Java", но решила точно следовать заданию...
+        // Очень хотелось вывести тут строку "Мой второй класс на Java" ...
         System.out.println("Мой первый класс на Java");
     }
 }
