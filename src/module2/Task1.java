@@ -150,8 +150,8 @@ public class Task1 {
     //Such a method is more accurate then array[0] % array[array.length-1] for double values
     public static double modulus(double array[])
     {
-        BigDecimal res = WorkWithBigDecimal.createBigDecimal(array[0]);
-        BigDecimal buf = WorkWithBigDecimal.createBigDecimal(array[array.length-1]);
+        BigDecimal res = WorkWithBigDecimal.createExactValue(array[0]);
+        BigDecimal buf = WorkWithBigDecimal.createExactValue(array[array.length-1]);
         BigDecimal countOfRepeating = res.divide(buf,0,BigDecimal.ROUND_DOWN);
 
         res = res.subtract(buf.multiply(countOfRepeating));
