@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Task3 {
     final static private BigDecimal COMMISSION_RATE = new BigDecimal(5);
 
-    /* The array "balances" used as initial value. The array "balances" is a input data according to the task,
+    /* The array "balances" used as initial value. The array "balances" is an input data according to the task,
      * but it can't be used in calculations because of it's type.
      * Current values save in array "currentBalances"*/
     static private int[] balances = {1200, 250, 2000, 500, 3200};
@@ -25,7 +25,7 @@ public class Task3 {
             currentBalances[i] = new BigDecimal(balances[i]);
 
         String ownerName = "Ann";
-        double withdrawal = 100.4;
+        double withdrawal = 100;
         withdrawMoney(ownerName, withdrawal);
 
         ownerName = "Oww";
@@ -53,7 +53,11 @@ public class Task3 {
             System.out.println(ownerName+" NO");
         else {
             currentBalances[ownerNumber]=currentBalances[ownerNumber].subtract(withdrawAmount);
-            System.out.println(ownerName + " " + withdrawal + " " + currentBalances[ownerNumber].doubleValue());
+
+            /* Rounding is used because the output data in task example is int.
+             * Despite type of variable "withdrawal" is double also according to the task.
+             * As for me it's strange... Fortunately it is not a real project, so let it be...*/
+            System.out.println(ownerName + " " + Math.round(withdrawal) + " " + Math.round(currentBalances[ownerNumber].doubleValue()));
         }
     }
 }
