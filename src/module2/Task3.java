@@ -1,7 +1,6 @@
 package module2;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 
 /**
  * Created by Администратор on 03.11.16.
