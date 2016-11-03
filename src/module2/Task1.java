@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Task1 {
     public static void main(String[] args) {
         int iarray[] = {9,1,-2,3,4,-5,6,7,-8,9};
-        double darray[] = {10000000000000.0001,2,-3.1,4.6,5,-6.4,7,8,9,1.0001};
+        double darray[] = {10.25,2,-3.1,4.6,5,-6.4,7,10.25,9,0.1};
 
         BigDecimal b = new BigDecimal(10.1d);
         System.out.println(b);
@@ -57,9 +57,9 @@ public class Task1 {
     public static int min(int array[])
     {
         int res = array[0];
-        for (int i=1; i<10; i++)
+        for (int item : array)
         {
-            if (res>array[i]) res=array[i];
+            if (res>item) res=item;
         }
         return res;
     }
@@ -67,9 +67,9 @@ public class Task1 {
     public static double min(double array[])
     {
         double res = array[0];
-        for (int i=1; i<10; i++)
+        for (double item : array)
         {
-            if (res>array[i]) res=array[i];
+            if (res>item) res=item;
         }
         return res;
     }
@@ -77,9 +77,9 @@ public class Task1 {
     public static int max(int array[])
     {
         int res = array[0];
-        for (int i=1; i<10; i++)
+        for (int item : array)
         {
-            if (res<array[i]) res=array[i];
+            if (res<item) res=item;
         }
         return res;
     }
@@ -87,9 +87,9 @@ public class Task1 {
     public static double max(double array[])
     {
         double res = array[0];
-        for (int i=1; i<10; i++)
+        for (double item : array)
         {
-            if (res<array[i]) res=array[i];
+            if (res<item) res=item;
         }
         return res;
     }
@@ -144,40 +144,17 @@ public class Task1 {
 
     public static int modulus(int array[])
     {
-        return array[0] % array[9];
+        return array[0] % array[array.length-1];
     }
 
-    private static int doubleCharacteristic(double n)
-    {
-        int res = 0;
-        n = Math.abs(n);
-        while (n>=1) {res++; n/=10;}
-        return res;
-    }
-
-    /*Such a method is more accurate then array[0] % array[9] for double values
-    *
-    * The method uses the fact that maximum value of mantissa in double value is 2^52 = 4503599627370496.
-    * So mantissa consists of 16 decimal digits or 15 decimal digits that take a value from 0 to 9 (the last digit
-    * take a value from 0 to 4)
-    * So the accurate fractional part of a double value consists of n=m-r digits. Where m=15 - mantissa length
-    * r - characteristic (rank) of a current double value.
-    * r is calculated by doubleCharacteristic(double n)
-    * Then BigDecimal is used. setScale rounds a double value according to calculated number of digits in accurate
-    * fractional part s double value*/
+    //Such a method is more accurate then array[0] % array[array.length-1] for double values
     public static double modulus(double array[])
     {
-        BigDecimal res = new BigDecimal(array[0]);
-        int NumberOfDigitForRes = 15 - doubleCharacteristic(array[0]);
-        res = res.setScale(NumberOfDigitForRes,BigDecimal.ROUND_HALF_UP);
+        BigDecimal res = WorkWithBigDecimal.createBigDecimal(array[0]);
+        BigDecimal buf = WorkWithBigDecimal.createBigDecimal(array[array.length-1]);
+        BigDecimal countOfRepeating = res.divide(buf,0,BigDecimal.ROUND_DOWN);
 
-        BigDecimal buf = new BigDecimal(array[9]);
-        int NumberOfDigitForBuf = 15 - doubleCharacteristic(array[9]);
-        buf = buf.setScale(NumberOfDigitForBuf,BigDecimal.ROUND_HALF_UP);
-
-        BigDecimal countOfRepeating = res.divide(buf,0,BigDecimal.ROUND_HALF_UP);
         res = res.subtract(buf.multiply(countOfRepeating));
-        // while (res.abs().compareTo(buf.abs())>=0) res = res.subtract(buf);
         return res.doubleValue();
     }
 
@@ -187,7 +164,7 @@ public class Task1 {
         int[] localArray = array.clone();
         for (int i=0; i<2; i++)
         {
-            for (int j=i+1; j<10; j++)
+            for (int j=i+1; j<array.length; j++)
             {
                 if (localArray[i]<localArray[j])
                 {
@@ -207,7 +184,7 @@ public class Task1 {
         double[] localArray = array.clone();
         for (int i=0; i<2; i++)
         {
-            for (int j=i+1; j<10; j++)
+            for (int j=i+1; j<array.length; j++)
             {
                 if (localArray[i]<localArray[j])
                 {
