@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class Task3 {
     final static private BigDecimal COMMISSION_RATE = new BigDecimal(5);
 
-    /* The array "balances" used as initial value. The array "balances" is an input data according to the task,
+    /* The array "balances" is used as initial value. The array "balances" is an input data according to the task,
      * but it can't be used in calculations because of it's type.
      * Current values save in array "currentBalances"*/
     static private int[] balances = {1200, 250, 2000, 500, 3200};
