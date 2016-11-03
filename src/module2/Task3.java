@@ -54,10 +54,10 @@ public class Task3 {
         else {
             currentBalances[ownerNumber]=currentBalances[ownerNumber].subtract(withdrawAmount);
 
-            /* Rounding is used because the output data in task example is int.
+            /* Floor method is used because the output data in task example is int.
              * Despite the type of variable "withdrawal" is double also according to the task.
              * As for me it's strange... Fortunately it is not a real project, so let it be...*/
-            System.out.println(ownerName + " " + Math.round(withdrawal) + " " + Math.round(currentBalances[ownerNumber].doubleValue()));
+            System.out.println(ownerName + " " + Math.floor(withdrawal) + " " + Math.floor(currentBalances[ownerNumber].doubleValue()));
         }
     }
 }
