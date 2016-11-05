@@ -26,7 +26,7 @@ public class Task4 {
     {
         int ownerNumber = -1;
         for(int i=0; i<ownerNames.length; i++)
-            if (ownerNames[i]==ownerName) ownerNumber = i;
+            if (ownerNames[i].equals(ownerName)) ownerNumber = i;
 
         if (ownerNumber==-1)
             System.out.println(ownerName+" is unregistered");
