@@ -3,7 +3,7 @@ package module2;
 import java.math.BigDecimal;
 
 /**
- * Created by Gala on 03.11.16.
+ * Created by Galina on 03.11.16.
  */
 public class Task3 {
     final static private BigDecimal COMMISSION_RATE = new BigDecimal(5);
