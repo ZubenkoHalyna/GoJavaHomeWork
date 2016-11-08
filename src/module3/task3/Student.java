@@ -4,8 +4,6 @@ package module3.task3;
  * Created by Администратор on 08.11.16.
  */
 public class Student {
-    /*Class Student with fields: String firstName, String lastName, int group, Course[] coursesTaken, int age.
-    With 2 constructors firstName, lastName, group; and lastName, coursesTaken. */
     private String firstName;
     private String lastName;
     private int group;
@@ -52,14 +50,14 @@ public class Student {
         this.age = age;
     }
 
-    public  Student(String firstName, String lastName, int group)
+    public Student(String firstName, String lastName, int group)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.group = group;
     }
 
-    public  Student(String lastName, Course[] coursesTaken)
+    public Student(String lastName, Course[] coursesTaken)
     {
         this.coursesTaken = coursesTaken.clone();
         this.lastName = lastName;
