@@ -39,17 +39,6 @@ public class Task3Main {
 
     }
 
-     static void printListOfObjects(Object[] objects, int startNumber)
-    {
-        int count = startNumber;
-        for (Object item:objects) {
-            String className = item.getClass().getName();
-            String shortClassName = className.substring(className.lastIndexOf('.')+1,className.length()-1);
-            if (count<9) System.out.print(" ");
-            System.out.println(++count+". "+shortClassName+": "+item);
-        }
-    }
-
     //Always returns an even value
     static long getId()
     {
@@ -60,5 +49,16 @@ public class Task3Main {
     static long getSecretKey()
     {
         return getId()+1;
+    }
+
+    static void printListOfObjects(Object[] objects, int startNumber)
+    {
+        int count = startNumber;
+        for (Object item:objects) {
+            String className = item.getClass().getName();
+            String shortClassName = className.substring(className.lastIndexOf('.')+1,className.length()-1);
+            if (count<9) System.out.print(" ");
+            System.out.println(++count+". "+shortClassName+": "+item);
+        }
     }
 }
