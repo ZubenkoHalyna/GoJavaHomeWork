@@ -26,10 +26,10 @@ public class Task3Main {
         studentList[1] = new Student("Tom","Green", groupNumber);
         studentList[2] = new CollegeStudent("Gray",courses);
         studentList[3] = new CollegeStudent("Sem","Backer",groupNumber);
-        studentList[4] = new CollegeStudent("MacDonald",courses,"California Institute of the Arts",50,getID());
+        studentList[4] = new CollegeStudent("MacDonald",courses,"California Institute of the Arts",50,getId());
         studentList[5] = new SpecialStudent("Howard",courses);
         studentList[6] = new SpecialStudent("Ketty","Allford",groupNumber);
-        studentList[7] = new SpecialStudent("Harrison",courses,"Whittier College",50,getID());
+        studentList[7] = new SpecialStudent("Harrison",courses,"Whittier College",50,getId());
         studentList[8] = new SpecialStudent("Watson",courses,getSecretKey());
 
         System.out.println("List of objects:");
@@ -51,7 +51,7 @@ public class Task3Main {
     }
 
     //Always returns an even value
-    static long getID()
+    static long getId()
     {
         return UUID.randomUUID().getLeastSignificantBits()<<1;
     }
@@ -59,6 +59,6 @@ public class Task3Main {
     //Always returns an uneven value
     static long getSecretKey()
     {
-        return getID()+1;
+        return getId()+1;
     }
 }
