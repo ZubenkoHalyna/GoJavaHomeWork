@@ -34,12 +34,12 @@ public class Task3Main {
 
         System.out.println("List of objects:");
 
-        printClassList(courses,0);
-        printClassList(studentList,courses.length);
+        printListOfObjects(courses,0);
+        printListOfObjects(studentList,courses.length);
 
     }
 
-     static void printClassList(Object[] objects, int startNumber)
+     static void printListOfObjects(Object[] objects, int startNumber)
     {
         int count = startNumber;
         for (Object item:objects) {
