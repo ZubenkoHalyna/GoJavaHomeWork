@@ -9,7 +9,7 @@ import java.util.UUID;
 /**
  * Created by Администратор on 08.11.16.
  */
-public class Task3Main {
+public class Main {
     public static void main(String[] args) {
         Course[] courses = new Course[5];
 
