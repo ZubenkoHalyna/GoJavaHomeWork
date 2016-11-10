@@ -56,7 +56,7 @@ public class Main {
         int count = startNumber;
         for (Object item:objects) {
             String className = item.getClass().getName();
-            String shortClassName = className.substring(className.lastIndexOf('.')+1,className.length()-1);
+            String shortClassName = className.substring(className.lastIndexOf('.')+1,className.length());
             System.out.format("%2d%s%n",++count,". "+shortClassName+": "+item);
         }
     }
