@@ -14,6 +14,31 @@ public class Course {
     private int hoursDuration;
     private String teacherName;
 
+    public Course(Date startDate,String name){
+        this.startDate = startDate;
+        this.name = name;
+    }
+
+    public Course(int hoursDuration,String name, String teacherName){
+        this.hoursDuration = hoursDuration;
+        this.name = name;
+        this.teacherName = teacherName;
+    }
+
+    @Override
+    public String toString()
+    {
+        if (startDate == null)
+        {
+            return name+" ("+hoursDuration+" hours by Pr. "+teacherName+")";
+        }
+        else
+        {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+            return dateFormat.format(startDate)+" "+name;
+        }
+    }
+
     public Date getStartDate() {
         return startDate;
     }
@@ -46,28 +71,4 @@ public class Course {
         this.teacherName = teacherName;
     }
 
-    public Course(Date startDate,String name){
-        this.startDate = startDate;
-        this.name = name;
-    }
-
-    public Course(int hoursDuration,String name, String teacherName){
-        this.hoursDuration = hoursDuration;
-        this.name = name;
-        this.teacherName = teacherName;
-    }
-
-    @Override
-    public String toString()
-    {
-        if (startDate == null)
-        {
-            return name+" ("+hoursDuration+" hours by Pr. "+teacherName+")";
-        }
-        else
-        {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-            return dateFormat.format(startDate)+" "+name;
-        }
-    }
 }

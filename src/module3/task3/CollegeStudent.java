@@ -16,22 +16,6 @@ public class CollegeStudent extends Student {
         this.collegeName = collegeName;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public CollegeStudent(String firstName, String lastName, int group)
     {
         super(firstName, lastName, group);
@@ -55,4 +39,21 @@ public class CollegeStudent extends Student {
     {
         return super.toString()+((id==0)?"":" (id = "+id+")");
     }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 }
