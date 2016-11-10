@@ -25,15 +25,28 @@ public class Main {
 
     private static void testWithdraw(User testUser) {
         System.out.println("\nTest of withdraw method:");
-        testUser.withdraw(2000);
+        testWithdrawOneIteration(testUser,3000);
+        testWithdrawOneIteration(testUser,2000);
+        testWithdrawOneIteration(testUser,700);
+        testWithdrawOneIteration(testUser,1100);
+    }
+
+    private static void testWithdrawOneIteration(User testUser, int summ) {
+        int initialBalance = testUser.getBalance();
+        System.out.println();
         printCurrentBalance(testUser);
-        System.out.println("Try to withdraw 2000");
+        System.out.println("Try to withdraw "+summ);
+        testUser.withdraw(summ);
         printCurrentBalance(testUser);
-        System.out.println("Balance didn't change. Withdrawal didn't complete. Balance < transaction amount");
-        System.out.println("Try to withdraw 700");
-        testUser.withdraw(700);
-        printCurrentBalance(testUser);
-        System.out.println("Balance changed. Withdrawal completed");
+        if (initialBalance==testUser.getBalance())
+        {
+            System.out.println("Balance didn't change. Withdrawal didn't complete. Balance < transaction amount");
+        }
+        else
+        {
+            int commissionRate = (summ<1000)?5:10;
+            System.out.println("Balance changed. Withdrawal completed. Commission = "+commissionRate+"%");
+        }
     }
 
     private static void printCurrentBalance(User testUser) {
@@ -41,7 +54,7 @@ public class Main {
     }
 
     private static User createTestUser() {
-        User user = new User("Gala",1000,24,"TK SAT",5000,"USD");
+        User user = new User("Gala",2000,24,"TK SAT",5000,"USD");
         System.out.println("The user was created. Name = "+user.getName()+", balance = "+user.getBalance()+
                 ", months of employment = "+user.getMonthsOfEmployment()+", company name = \""+user.getCompanyName()+
                 "\", salary = "+user.getSalary()+", currency = "+user.getCurrency());
