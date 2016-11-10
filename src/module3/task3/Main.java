@@ -57,8 +57,7 @@ public class Main {
         for (Object item:objects) {
             String className = item.getClass().getName();
             String shortClassName = className.substring(className.lastIndexOf('.')+1,className.length()-1);
-            if (count<9) System.out.print(" ");
-            System.out.println(++count+". "+shortClassName+": "+item);
+            System.out.format("%2d%s%n",++count,". "+shortClassName+": "+item);
         }
     }
 }
