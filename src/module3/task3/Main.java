@@ -1,7 +1,5 @@
 package module3.task3;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.UUID;
@@ -13,10 +11,15 @@ public class Main {
     public static void main(String[] args) {
         Course[] courses = new Course[5];
 
-        courses[0]=new Course(new GregorianCalendar(2016,Calendar.SEPTEMBER,1).getTime(),"Mathematics");
-        courses[1]=new Course(new GregorianCalendar(2016,Calendar.OCTOBER,1).getTime(),"Physics");
-        courses[2]=new Course(new GregorianCalendar(2016,Calendar.NOVEMBER,1).getTime(),"Biology");
-        courses[3]=new Course(new GregorianCalendar(2016,Calendar.DECEMBER,1).getTime(),"Chemistry");
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(2016,Calendar.SEPTEMBER,1);
+        courses[0]=new Course(calendar.getTime(),"Mathematics");
+        calendar.set(2016,Calendar.OCTOBER,1);
+        courses[1]=new Course(calendar.getTime(),"Physics");
+        calendar.set(2016,Calendar.NOVEMBER,1);
+        courses[2]=new Course(calendar.getTime(),"Biology");
+        calendar.set(2016,Calendar.DECEMBER,1);
+        courses[3]=new Course(calendar.getTime(),"Chemistry");
         courses[4]=new Course(40,"Computer science","Howard");
 
         int groupNumber = 1;
