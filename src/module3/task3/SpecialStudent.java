@@ -32,7 +32,7 @@ public class SpecialStudent extends CollegeStudent {
     public String toString()
     {
         if (secretKey==0) return super.toString(); else
-        return getShortFullName()+" (key = "+secretKey+")";
+        return getShortFullName()+" (key = "+secretKey+")"+coursesTakenToString();
     }
 
     public long getSecretKey() {

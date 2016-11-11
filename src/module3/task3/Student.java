@@ -1,5 +1,7 @@
 package module3.task3;
 
+import java.util.Arrays;
+
 /**
  * Created by Администратор on 08.11.16.
  */
@@ -19,14 +21,20 @@ public class Student {
 
     public Student(String lastName, Course[] coursesTaken)
     {
-        this.coursesTaken = coursesTaken.clone();
+        this.coursesTaken = Arrays.copyOf(coursesTaken,coursesTaken.length);
         this.lastName = lastName;
     }
 
     @Override
     public String toString()
     {
-        return getShortFullName();
+        return getShortFullName()+ coursesTakenToString();
+    }
+
+    protected String coursesTakenToString() {
+        return (coursesTaken==null)?"":"\n"+
+                String.format("%1$"+(this.getClass().getSimpleName().length()+21)+"s","coursesTaken = ")
+                + Arrays.toString(coursesTaken)+" ";
     }
 
     public String getShortFullName()

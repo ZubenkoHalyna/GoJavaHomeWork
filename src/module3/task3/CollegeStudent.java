@@ -37,7 +37,7 @@ public class CollegeStudent extends Student {
     @Override
     public String toString()
     {
-        return super.toString()+((id==0)?"":" (id = "+id+")");
+        return getShortFullName()+((id==0)?"":" (id = "+id+")")+coursesTakenToString();
     }
 
     public int getRating() {
