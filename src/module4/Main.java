@@ -19,9 +19,7 @@ public class Main {
         Bank[] banks = createBanks();
         User[] users = createUsers(banks);
 
-        System.out.println("\nList of banks:");
         printListOfObjects(banks);
-        System.out.println("\nList of users:");
         printListOfObjects(users);
 
         BankSystem bankSystem = new BankSystem();
@@ -117,8 +115,10 @@ public class Main {
     static void printListOfObjects(Object[] objects)
     {
         int count = 0;
+        String simpleName = objects.getClass().getSimpleName();
+        System.out.println("\nList of "+simpleName.substring(0,simpleName.length()-2).toLowerCase()+"s:");
         for (Object item:objects) {
-            System.out.format("%2d%s%n",++count,". "+item);
+            System.out.format("%2d%s%n", ++count, ". " + item);
         }
     }
 }
