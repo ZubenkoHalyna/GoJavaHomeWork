@@ -19,12 +19,11 @@ public class Main {
         System.out.println();
 
         BankSystem bankSystem = new BankSystemImpl();
-
-        Transaction[][] tr = executeTransactions2(users, bankSystem);
+        Transaction[][] tr = executeTransactions(users, bankSystem);
         printTransactions(tr);
     }
 
-    private static Transaction[][] executeTransactions2(User[] userArray, BankSystem bankSystem) {
+    private static Transaction[][] executeTransactions(User[] userArray, BankSystem bankSystem) {
         Random r = new Random();
         Transaction[][] tr = new Transaction[4][userArray.length];
 
