@@ -1,5 +1,7 @@
 package module4;
 
+import java.util.ArrayList;
+
 /**
  * Created by g.zubenko on 16.11.2016.
  */
@@ -15,8 +17,7 @@ public class Transaction {
     private double balanceUserToAfter;
 
     public Transaction(boolean isCanceled, TransactionType type, User userFrom, double amount,
-                       double balanceUserFromBefore, double balanceUserFromAfter)
-    {
+                       double balanceUserFromBefore, double balanceUserFromAfter) {
         this.isCanceled = isCanceled;
         this.type = type;
         this.userFrom = userFrom;
@@ -27,8 +28,8 @@ public class Transaction {
 
     public Transaction(boolean isCanceled, TransactionType type, User userFrom, User userTo, double amount,
                        double balanceUserFromBefore, double balanceUserToBefore, double balanceUserFromAfter,
-                       double balanceUserToAfter)
-    {        this.isCanceled = isCanceled;
+                       double balanceUserToAfter) {
+        this.isCanceled = isCanceled;
         this.type = type;
         this.userFrom = userFrom;
         this.userTo = userTo;
@@ -41,17 +42,43 @@ public class Transaction {
 
     @Override
     public String toString() {
-        String toBeOrNotToBe = (isCanceled)? " wasn't" : " was";
-        return "\nTry to"+type.getComment()+ amount+" "+userFrom.getBank().getCurrency()+type.getPreposition()+
-                userFrom+"'s account"+((userTo==null)?"":" to "+userTo+"'s account")+"...\n"+
+        return "Try to" + type.getComment() + amount + " " + userFrom.getBank().getCurrency() + type.getPreposition() +
+                userFrom + "'s account" + ((userTo == null) ? "" : " to " + userTo + "'s account") + "...\n" +
 
-                "Bank from = "+userFrom.getBank().bankDescription()+"\n"+
-                ((userTo==null)?"":"Bank to = "+userTo.getBank().bankDescription()+"\n")+
-                "Transaction was"+((isCanceled)?"n't":"")+" executed successfully.\n"+
-                userFrom+"'s balance before transaction = "+balanceUserFromBefore +" "+userFrom.getBank().getCurrency()+"\n"+
-                userFrom+"'s balance after transaction = "+balanceUserFromAfter +" "+userFrom.getBank().getCurrency()+
-                ((userTo==null)?"":"\n"+userTo+"'s balance before transaction = "+balanceUserToBefore+" " +userTo.getBank().getCurrency()+"\n"+
-                userTo+"'s balance after transaction = "+balanceUserToAfter +" "+userTo.getBank().getCurrency());
+                "Bank from = " + userFrom.getBank().bankDescription() + "\n" +
+                ((userTo == null) ? "" : "Bank to = " + userTo.getBank().bankDescription() + "\n") +
+                "Transaction was" + ((isCanceled) ? "n't" : "") + " executed successfully.\n" +
+                userFrom + "'s balance before transaction = " + balanceUserFromBefore + " " + userFrom.getBank().getCurrency() + "\n" +
+                userFrom + "'s balance after transaction = " + balanceUserFromAfter + " " + userFrom.getBank().getCurrency() + "\n" +
+                ((userTo == null) ? "" : userTo + "'s balance before transaction = " + balanceUserToBefore + " " + userTo.getBank().getCurrency() + "\n" +
+                        userTo + "'s balance after transaction = " + balanceUserToAfter + " " + userTo.getBank().getCurrency() + "\n");
+    }
+
+    public String[] getToStringArray() {
+        char ch = '\n';
+        int numberOfChar = 0;
+        String searchString = toString();
+        int lastPosition = 0;
+
+        do {
+            lastPosition = searchString.indexOf(ch, lastPosition+1);
+            if (lastPosition > 0) numberOfChar++;
+        }
+        while (lastPosition > 0);
+
+        String[] list = new String[16];
+
+        int index = 0;
+        lastPosition =0;
+        while (index!=numberOfChar-1){
+            int newPosition = searchString.indexOf(ch, lastPosition+1);
+            list[index] = searchString.substring((lastPosition == 0) ? 0 : lastPosition + 1, newPosition);
+            lastPosition = newPosition;
+            index++;
+        }
+        list[index] = searchString.substring(lastPosition+1, searchString.length()-1);
+
+        return list;
     }
 
     public void setCanceled(boolean canceled) {
