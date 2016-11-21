@@ -7,6 +7,7 @@ import java.util.*;
  */
 public class Main {
     private static final int MAX_OPERATIONS_AMOUNT = 3000;
+    private static Random r = new Random();
 
     public static void main(String[] args) {
         setConstants();
@@ -24,17 +25,26 @@ public class Main {
     }
 
     private static Transaction[][] executeTransactions(User[] userArray, BankSystem bankSystem) {
-        Random r = new Random();
         Transaction[][] tr = new Transaction[4][userArray.length];
 
         for (int i = 0; i < userArray.length; i++) {
             tr[0][i] = bankSystem.withdrawOfUser(userArray[i], r.nextInt(MAX_OPERATIONS_AMOUNT));
             tr[1][i] = bankSystem.fundUser(userArray[i], r.nextInt(MAX_OPERATIONS_AMOUNT));
             tr[2][i] = bankSystem.paySalary(userArray[i]);
-            User randomUser = userArray[(i + 1) % userArray.length];
+            User randomUser = userArray[getDifferentRandomWithTheSameParity(userArray.length,i)];
             tr[3][i] = bankSystem.transferMoney(userArray[i], randomUser, r.nextInt(MAX_OPERATIONS_AMOUNT));
         }
         return tr;
+    }
+
+    private static int getDifferentRandomWithTheSameParity(int bound, int value) {
+        int parity = value%2;
+
+        int newValue = r.nextInt(bound/2);
+        while (2*newValue+parity==value) {
+            newValue = r.nextInt(bound/2);
+        }
+        return 2*newValue+parity;
     }
 
     private static void printTransactions(Transaction[][] t) {
@@ -49,11 +59,13 @@ public class Main {
                 for (int k = 0; k < 16; k++)
                     if (stringArray[i][j][k] != null && maxLength[i] < stringArray[i][j][k].length())
                         maxLength[i] = stringArray[i][j][k].length();
-
             }
-            if (maxLengthOfUserName < t[i][0].getUserFrom().toString().length())
-                maxLengthOfUserName = t[i][0].getUserFrom().toString().length();
             lineLength+=maxLength[i];
+        }
+
+        for (int j = 0; j < t[0].length; j++) {
+            if (maxLengthOfUserName < t[0][j].getUserFrom().toString().length())
+                maxLengthOfUserName = t[0][j].getUserFrom().toString().length();
         }
 
         System.out.format("%-" + maxLengthOfUserName + "s", "");
@@ -90,8 +102,8 @@ public class Main {
 
     private static Bank[] createBanks() {
         Bank[] banks = new Bank[6];
-        banks[0] = new USBank(getNewId(), Currency.EUR, 1000, 1000, 4, 10000000000L);
-        banks[1] = new USBank(getNewId(), Currency.USD, 2000, 1500, 3, 220000000000L);
+        banks[0] = new USBank(getNewId(), Currency.USD, 1000, 1000, 4, 10000000000L);
+        banks[1] = new USBank(getNewId(), Currency.EUR, 2000, 1500, 3, 220000000000L);
         banks[2] = new EUBank(getNewId(), Currency.USD, 3000, 2500, 2, 500000000000L);
         banks[3] = new EUBank(getNewId(), Currency.EUR, 4000, 3500, 1, 1000000000000L);
         banks[4] = new ChinaBank(getNewId(), Currency.USD, 100, 200, 5, 10000000L);

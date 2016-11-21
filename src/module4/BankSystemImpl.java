@@ -16,16 +16,6 @@ public class BankSystemImpl implements BankSystem {
         return t;
     }
 
-    private void withdrawOfUserWithoutCheck(User user, int amount)
-    {
-        user.setBalance(user.getBalance() - getTotalAmount(user, amount));
-    }
-
-    private double getTotalAmount(User user, int amount)
-    {
-        return amount + amount*user.getBank().getCommission(amount)/100.0;
-    }
-
     public Transaction fundUser(User user, int amount){
         boolean isAllowed = canFundToUser(user, amount);
         double balanceBuf = user.getBalance();
@@ -36,9 +26,11 @@ public class BankSystemImpl implements BankSystem {
         return t;
     }
 
-    private void fundUserWithoutCheck(User user, int amount)
-    {
-        user.setBalance(user.getBalance() + amount);
+    public Transaction paySalary(User user){
+        Transaction t = fundUser(user, user.getSalary());
+        t.setType(TransactionType.PAYMENT);
+
+        return t;
     }
 
     public Transaction transferMoney(User fromUser, User toUser, int amount){
@@ -54,11 +46,19 @@ public class BankSystemImpl implements BankSystem {
         return t;
     }
 
-    public Transaction paySalary(User user){
-        Transaction t = fundUser(user, user.getSalary());
-        t.setType(TransactionType.PAYMENT);
+    private void withdrawOfUserWithoutCheck(User user, int amount)
+    {
+        user.setBalance(user.getBalance() - getTotalAmount(user, amount));
+    }
 
-        return t;
+    private double getTotalAmount(User user, int amount)
+    {
+        return amount + amount*user.getBank().getCommission(amount)/100.0;
+    }
+
+    private void fundUserWithoutCheck(User user, int amount)
+    {
+        user.setBalance(user.getBalance() + amount);
     }
 
     private boolean canWithdrawOfUser(User user, int amount)
@@ -74,7 +74,7 @@ public class BankSystemImpl implements BankSystem {
 
     private boolean canTransferMoney(User fromUser, User toUser, int amount)
     {
-        return canWithdrawOfUser(fromUser, amount) && canFundToUser(toUser,
-                amount) && fromUser.getBank().getCurrency()==toUser.getBank().getCurrency();
+        return canWithdrawOfUser(fromUser, amount) && canFundToUser(toUser, amount) &&
+                fromUser.getBank().getCurrency()==toUser.getBank().getCurrency();
     }
 }
