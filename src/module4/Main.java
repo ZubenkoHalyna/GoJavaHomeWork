@@ -10,8 +10,6 @@ public class Main {
     private static Random r = new Random();
 
     public static void main(String[] args) {
-        setConstants();
-
         Bank[] banks = createBanks();
         User[] users = createUsers(banks);
 
@@ -102,48 +100,13 @@ public class Main {
 
     private static Bank[] createBanks() {
         Bank[] banks = new Bank[6];
-        banks[0] = new USBank(getNewId(), Currency.USD, 1000, 1000, 4, 10000000000L);
-        banks[1] = new USBank(getNewId(), Currency.EUR, 2000, 1500, 3, 220000000000L);
-        banks[2] = new EUBank(getNewId(), Currency.USD, 3000, 2500, 2, 500000000000L);
-        banks[3] = new EUBank(getNewId(), Currency.EUR, 4000, 3500, 1, 1000000000000L);
-        banks[4] = new ChinaBank(getNewId(), Currency.USD, 100, 200, 5, 10000000L);
-        banks[5] = new ChinaBank(getNewId(), Currency.EUR, 50, 150, 6, 1000000L);
+        banks[0] = new USBank(getNewId(), Currency.USD, 1000, 1000, 4, 10000000000L,1000,1200,10000,2147483647,1,2,5,7,6,8);
+        banks[1] = new USBank(getNewId(), Currency.EUR, 2000, 1500, 3, 220000000000L,1000,1200,10000,2147483647,1,2,5,7,6,8);
+        banks[2] = new EUBank(getNewId(), Currency.USD, 3000, 2500, 2, 500000000000L,2000,2200,20000,10000,1,0,5,7,2,4);
+        banks[3] = new EUBank(getNewId(), Currency.EUR, 4000, 3500, 1, 1000000000000L,2000,2200,20000,10000,1,0,5,7,2,4);
+        banks[4] = new ChinaBank(getNewId(), Currency.USD, 100, 200, 5, 10000000L,100,150,5000,10000,0,1,3,5,10,11);
+        banks[5] = new ChinaBank(getNewId(), Currency.EUR, 50, 150, 6, 1000000L,100,150,5000,10000,0,1,3,5,10,11);
         return banks;
-    }
-
-    private static void setConstants() {
-        USBank.setLimitOfWithdrawalUSD(1000);
-        USBank.setLimitOfWithdrawalEUR(1200);
-        USBank.setLimitOfFundingUSD(10000);
-        USBank.setLimitOfFundingEUR(2147483647);
-        USBank.setMonthlyRateUSD(1);
-        USBank.setMonthlyRateEUR(2);
-        USBank.setCommissionIfUsdAndUpTo1000(5);
-        USBank.setCommissionIfUsdAndMoreThan1000(7);
-        USBank.setCommissionIfEurAndUpTo1000(6);
-        USBank.setCommissionIfEurAndMoreThan1000(8);
-
-        EUBank.setLimitOfWithdrawalUSD(2000);
-        EUBank.setLimitOfWithdrawalEUR(2200);
-        EUBank.setLimitOfFundingUSD(20000);
-        EUBank.setLimitOfFundingEUR(10000);
-        EUBank.setMonthlyRateUSD(1);
-        EUBank.setMonthlyRateEUR(0);
-        EUBank.setCommissionIfUsdAndUpTo1000(5);
-        EUBank.setCommissionIfUsdAndMoreThan1000(7);
-        EUBank.setCommissionIfEurAndUpTo1000(2);
-        EUBank.setCommissionIfEurAndMoreThan1000(4);
-
-        ChinaBank.setLimitOfWithdrawalUSD(100);
-        ChinaBank.setLimitOfWithdrawalEUR(150);
-        ChinaBank.setLimitOfFundingUSD(5000);
-        ChinaBank.setLimitOfFundingEUR(10000);
-        ChinaBank.setMonthlyRateUSD(0);
-        ChinaBank.setMonthlyRateEUR(1);
-        ChinaBank.setCommissionIfUsdAndUpTo1000(3);
-        ChinaBank.setCommissionIfUsdAndMoreThan1000(5);
-        ChinaBank.setCommissionIfEurAndUpTo1000(10);
-        ChinaBank.setCommissionIfEurAndMoreThan1000(11);
     }
 
     static long getNewId() {

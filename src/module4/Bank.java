@@ -11,6 +11,16 @@ public abstract class Bank {
     private double avrSalaryOfEmployee;
     private long rating;
     private long totalCapital;
+    private int limitOfWithdrawalUSD;
+    private int limitOfWithdrawalEUR;
+    private int limitOfFundingUSD;
+    private int limitOfFundingEUR;
+    private int monthlyRateUSD;
+    private int monthlyRateEUR;
+    private int commissionIfUsdAndUpTo1000;
+    private int commissionIfUsdAndMoreThan1000;
+    private int commissionIfEurAndUpTo1000;
+    private int commissionIfEurAndMoreThan1000;
 
     abstract int getLimitOfWithdrawal();
 
@@ -25,7 +35,10 @@ public abstract class Bank {
     }
 
     public Bank(long id, String bankCountry, Currency currency, int numberOfEmployees, double avrSalaryOfEmployee,
-                long rating, long totalCapital) {
+                long rating, long totalCapital, int limitOfWithdrawalUSD, int limitOfWithdrawalEUR,
+                int limitOfFundingUSD, int limitOfFundingEUR, int monthlyRateUSD, int monthlyRateEUR,
+                int commissionIfUsdAndUpTo1000, int commissionIfUsdAndMoreThan1000, int commissionIfEurAndUpTo1000,
+                int commissionIfEurAndMoreThan1000) {
         this.id = id;
         this.bankCountry = bankCountry;
         this.currency = currency;
@@ -33,9 +46,19 @@ public abstract class Bank {
         this.avrSalaryOfEmployee = avrSalaryOfEmployee;
         this.rating = rating;
         this.totalCapital = totalCapital;
+        this.limitOfWithdrawalUSD = limitOfWithdrawalUSD;
+        this.limitOfWithdrawalEUR = limitOfWithdrawalEUR;
+        this.limitOfFundingUSD = limitOfFundingUSD;
+        this.limitOfFundingEUR = limitOfFundingEUR;
+        this.monthlyRateUSD = monthlyRateUSD;
+        this.monthlyRateEUR = monthlyRateEUR;
+        this.commissionIfUsdAndUpTo1000 = commissionIfUsdAndUpTo1000;
+        this.commissionIfUsdAndMoreThan1000 = commissionIfUsdAndMoreThan1000;
+        this.commissionIfEurAndUpTo1000 = commissionIfEurAndUpTo1000;
+        this.commissionIfEurAndMoreThan1000 = commissionIfEurAndMoreThan1000;
     }
 
-    protected int getLimitOfWithdrawal(int limitOfWithdrawalUSD, int limitOfWithdrawalEUR) {
+    protected int getLimitOfWithdrawalDefault() {
             if (currency == Currency.USD)
             {
                 return limitOfWithdrawalUSD;
@@ -47,7 +70,7 @@ public abstract class Bank {
             return 0;
         }
 
-    protected int getLimitOfFunding(int limitOfFundingUSD, int limitOfFundingEUR) {
+    protected int getLimitOfFundingDefault() {
         if (currency == Currency.USD)
         {
             return limitOfFundingUSD;
@@ -59,7 +82,7 @@ public abstract class Bank {
         return 0;
     }
 
-    protected int getMonthlyRate(int monthlyRateUSD, int monthlyRateEUR) {
+    protected int getMonthlyRateDefault() {
         if (currency == Currency.USD)
         {
             return monthlyRateUSD;
@@ -71,11 +94,7 @@ public abstract class Bank {
         return 0;
     }
 
-    protected int getCommissionRate(int summ,
-                                  int commissionIfUsdAndUpTo1000,
-                                  int commissionIfUsdAndMoreThan1000,
-                                  int commissionIfEurAndUpTo1000,
-                                  int commissionIfEurAndMoreThan1000) {
+    protected int getCommissionRateDefault(int summ) {
         if (currency == Currency.USD)
         {
             if (summ>1000)
@@ -170,6 +189,86 @@ public abstract class Bank {
 
     public void setTotalCapital(long totalCapital) {
         this.totalCapital = totalCapital;
+    }
+
+    public int getLimitOfWithdrawalUSD() {
+        return limitOfWithdrawalUSD;
+    }
+
+    public void setLimitOfWithdrawalUSD(int limitOfWithdrawalUSD) {
+        this.limitOfWithdrawalUSD = limitOfWithdrawalUSD;
+    }
+
+    public int getLimitOfWithdrawalEUR() {
+        return limitOfWithdrawalEUR;
+    }
+
+    public void setLimitOfWithdrawalEUR(int limitOfWithdrawalEUR) {
+        this.limitOfWithdrawalEUR = limitOfWithdrawalEUR;
+    }
+
+    public int getLimitOfFundingUSD() {
+        return limitOfFundingUSD;
+    }
+
+    public void setLimitOfFundingUSD(int limitOfFundingUSD) {
+        this.limitOfFundingUSD = limitOfFundingUSD;
+    }
+
+    public int getLimitOfFundingEUR() {
+        return limitOfFundingEUR;
+    }
+
+    public void setLimitOfFundingEUR(int limitOfFundingEUR) {
+        this.limitOfFundingEUR = limitOfFundingEUR;
+    }
+
+    public int getMonthlyRateUSD() {
+        return monthlyRateUSD;
+    }
+
+    public void setMonthlyRateUSD(int monthlyRateUSD) {
+        this.monthlyRateUSD = monthlyRateUSD;
+    }
+
+    public int getMonthlyRateEUR() {
+        return monthlyRateEUR;
+    }
+
+    public void setMonthlyRateEUR(int monthlyRateEUR) {
+        this.monthlyRateEUR = monthlyRateEUR;
+    }
+
+    public int getCommissionIfUsdAndUpTo1000() {
+        return commissionIfUsdAndUpTo1000;
+    }
+
+    public void setCommissionIfUsdAndUpTo1000(int commissionIfUsdAndUpTo1000) {
+        this.commissionIfUsdAndUpTo1000 = commissionIfUsdAndUpTo1000;
+    }
+
+    public int getCommissionIfUsdAndMoreThan1000() {
+        return commissionIfUsdAndMoreThan1000;
+    }
+
+    public void setCommissionIfUsdAndMoreThan1000(int commissionIfUsdAndMoreThan1000) {
+        this.commissionIfUsdAndMoreThan1000 = commissionIfUsdAndMoreThan1000;
+    }
+
+    public int getCommissionIfEurAndUpTo1000() {
+        return commissionIfEurAndUpTo1000;
+    }
+
+    public void setCommissionIfEurAndUpTo1000(int commissionIfEurAndUpTo1000) {
+        this.commissionIfEurAndUpTo1000 = commissionIfEurAndUpTo1000;
+    }
+
+    public int getCommissionIfEurAndMoreThan1000() {
+        return commissionIfEurAndMoreThan1000;
+    }
+
+    public void setCommissionIfEurAndMoreThan1000(int commissionIfEurAndMoreThan1000) {
+        this.commissionIfEurAndMoreThan1000 = commissionIfEurAndMoreThan1000;
     }
 }
 
