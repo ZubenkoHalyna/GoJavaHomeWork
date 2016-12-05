@@ -79,6 +79,6 @@ public final class UserUtils {
     }
 
     public static String userDescription(User user) {
-        return (user==null)?"":user.toString()+"(id = "+user.getId()+", balance = "+user.getBalance()+")";
+        return (user==null)?"null":user.toString()+"(id = "+user.getId()+", balance = "+user.getBalance()+")";
     }
 }
