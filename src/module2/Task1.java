@@ -9,7 +9,7 @@ public class Task1 {
     public static void main(String[] args) {
         int iarray[] = {9,1,-2,3,4,-5,6,7,-8,9};
 
-        System.out.println("The array is "+Arrays.toString(iarray));
+        System.out.println("Initial array is "+Arrays.toString(iarray));
         System.out.println("The sum of array elements is " + module6.ArraysUtils.sum(iarray));
         System.out.println("The minimum element of the array is " + module6.ArraysUtils.min(iarray));
         System.out.println("The maximum element of the array is " + module6.ArraysUtils.max(iarray));

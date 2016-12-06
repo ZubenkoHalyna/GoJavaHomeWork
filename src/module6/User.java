@@ -4,6 +4,7 @@ package module6;
  * Created by g.zubenko on 05.12.2016.
  */
 public class User {
+    private static final String ANONYMOUS = "anonymous";
     private long id;
     private String firstName;
     private String lastName;
@@ -22,17 +23,19 @@ public class User {
         balance+=salary;
     }
 
-    public boolean isEmpty(){
-        if ((firstName==null || firstName.equals("")) &&
-                (lastName==null || lastName.equals("")))
-            return true;
-        else
-            return false;
+    public boolean isAnonymous()
+    {
+        return ((firstName==null || firstName.equals("")) && (lastName==null || lastName.equals("")));
     }
 
     @Override
     public String toString() {
-        return firstName+" "+lastName;
+        String name;
+        if (isAnonymous()) name = ANONYMOUS;
+        else if (firstName==null || firstName.equals("")) name =  lastName;
+        else if (lastName==null || lastName.equals("")) name = firstName;
+        else name = firstName+" "+lastName;
+        return  name+" (id="+id+")";
     }
 
     public long getId() {
@@ -41,6 +44,26 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+        return lastName != null ? lastName.equals(user.lastName) : user.lastName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        return result;
     }
 
     public String getFirstName() {
