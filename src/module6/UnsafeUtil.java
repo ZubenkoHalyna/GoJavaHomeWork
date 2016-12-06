@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
  * The class provides getAddressInMemory method.
  * Address in memory may change as JVM works, so this information is useless for enterprise.
  */
-public class UnsafeUtil {
+public final class UnsafeUtil {
     private UnsafeUtil(){}
 
     public static Unsafe unsafe;
