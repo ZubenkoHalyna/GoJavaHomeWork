@@ -80,7 +80,7 @@ public class Main {
                 iterator.remove();
             }
         }
-        printCollection("Orders with currency = USD", setOfOrders);
+        printCollection("Orders with currency = EUR", setOfOrders);
     }
 
     private static Map<String, List<Order>> groupOrdersByCity(List<Order> orders) {
