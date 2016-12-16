@@ -1,4 +1,4 @@
-package module7;
+package module7.Task_1_3;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -64,19 +64,19 @@ public class Main {
 
         printTaskHeader("                          TASK № 3                          ");
         printCollection("Initial set of orders", setOfOrders);
-        printSubHeader("check if set contain order where User’s lastName is “"+SURNAMES[0]+"”");
-        System.out.println("result="+setOfOrders.stream().anyMatch((Order o)->o.getUser().getLastName().equals(SURNAMES[0])));
+        printSubHeader("check if set contain order where User’s lastName is “" + SURNAMES[0] + "”");
+        System.out.println("result=" + setOfOrders.stream().anyMatch((Order o) -> o.getUser().getLastName().equals(SURNAMES[0])));
         System.out.println();
 
         printSubHeader("print order with largest price using only one set method - get ");
-        System.out.println("result = Order{"+setOfOrders.stream().min(Order.getByPriceComparator()).get()+"}");
+        System.out.println("result = Order{" + setOfOrders.stream().min(Order.getByPriceComparator()).get() + "}");
         System.out.println();
 
         printSubHeader("delete orders where currency is USD using Iterator");
         Iterator<Order> iterator = setOfOrders.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Order item = iterator.next();
-            if(item.getCurrency()==Currency.USD){
+            if (item.getCurrency() == Currency.USD) {
                 iterator.remove();
             }
         }
@@ -97,7 +97,8 @@ public class Main {
                 List<Order> currentList = ordersInCity.get(city);
                 currentList.add(currentOrder);
             }
-        } return ordersInCity;
+        }
+        return ordersInCity;
     }
 
     //creates random orders
@@ -180,7 +181,7 @@ public class Main {
     }
 
     public static void printSubHeader(String header) {
-        printTaskHeader("TASK: "+header);
+        printTaskHeader("TASK: " + header);
     }
 
 

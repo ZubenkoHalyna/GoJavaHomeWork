@@ -1,4 +1,4 @@
-package module7;
+package module7.Task_1_3;
 
 import java.util.Comparator;
 import java.util.function.ToIntBiFunction;

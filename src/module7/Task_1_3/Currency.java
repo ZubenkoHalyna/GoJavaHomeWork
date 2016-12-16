@@ -1,4 +1,4 @@
-package module7;
+package module7.Task_1_3;
 
 /**
  * Created by g.zubenko on 11.12.2016.

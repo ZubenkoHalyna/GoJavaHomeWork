@@ -1,4 +1,4 @@
-package module7;
+package module7.Task_1_3;
 
 /**
  * Created by g.zubenko on 11.12.2016.
@@ -41,7 +41,8 @@ public class Order {
         user = orderToCopy.user;
     }
 
-    public Order(){}
+    public Order() {
+    }
 
     protected long getNewId() {
         return idProvider.getNewId();
@@ -49,11 +50,11 @@ public class Order {
 
     @Override
     public String toString() {
-        return  "item=" + itemName +
+        return "item=" + itemName +
                 ", price=" + price + " " + currency +
                 ", shop=" + shopIdentificator +
                 ", user=" + user.getShortDescription() +
-                ", id=" + id ;
+                ", id=" + id;
     }
 
     @Override
