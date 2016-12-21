@@ -32,9 +32,8 @@ public class Main {
 
         System.out.println("\nTest 2: deleting");
         System.out.println("Deleting all women ...");
-        dao.saveAll(listOfMen);
-        System.out.println("Deleting Mr. Black ...");
         dao.deleteAll(listOfWomen);
+        System.out.println("Deleting Mr. Black ...");
         dao.delete(listOfMen.get(0));
 
         module7.Task_1_3.Main.printCollection("All users after deleting", dao.getAll());
