@@ -137,12 +137,13 @@ public class Main {
 
     public static void printCollection(String listName, Collection orders) {
         Object obj = orders.iterator().next();
-        String[] objectToString = obj.toString().split(", ");
-        final int maxColumnNumber = objectToString.length;
-        final String[] columnName = new String[maxColumnNumber];//{"Item ", "Price ", "Shop ", "Ful name ", "City ", "Id "};
-        int[] maxLength = new int[maxColumnNumber];//{5, 6, 5, 9, 5, 3};
+        String objectToString = obj.toString();
+        String[] objectToStrings = objectToString.substring(objectToString.lastIndexOf('{')+1,objectToString.lastIndexOf('}')).split(", ");
+        final int maxColumnNumber = objectToStrings.length;
+        final String[] columnName = new String[maxColumnNumber];
+        int[] maxLength = new int[maxColumnNumber];
         for (int j = 0; j < maxColumnNumber; j++) {
-            String currentString = objectToString[j];
+            String currentString = objectToStrings[j];
             columnName[j] = currentString.substring(0, currentString.indexOf('='));
             maxLength[j] = columnName[j].length();
         }
@@ -150,10 +151,14 @@ public class Main {
 
         int rowCount = 0;
         for (Object cOrder : orders) {
-            strings[rowCount] = cOrder.toString().split(", ", maxColumnNumber);
+            String str = cOrder.toString();
+            strings[rowCount] = str.substring(str.lastIndexOf('{')+1,str.lastIndexOf('}')).split(", ", maxColumnNumber);
             for (int j = 0; j < maxColumnNumber; j++) {
                 String currentString = strings[rowCount][j];
-                strings[rowCount][j] = currentString.substring(currentString.indexOf('=') + 1, currentString.length());
+                currentString = currentString.substring(currentString.indexOf('=') + 1, currentString.length());
+                if (currentString.charAt(0)=='\'') currentString=currentString.substring(1,currentString.length());
+                if (currentString.charAt(currentString.length()-1)=='\'') currentString=currentString.substring(0,currentString.length()-1);
+                strings[rowCount][j] = currentString;
                 if (maxLength[j] < strings[rowCount][j].length()) maxLength[j] = strings[rowCount][j].length();
             }
             rowCount++;
